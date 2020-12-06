@@ -54,5 +54,27 @@ fun solution(board: Array<IntArray>, moves: IntArray): Int{
     println()
     return answer
 }
+
+//fun solution(board: Array<IntArray>, moves: IntArray): Int {
+//    var answer = 0
+//    val stack = Stack<Int>()
+//
+//    moves.forEach {
+//        for (i in board.indices) {
+//            if (board[i][it - 1] != 0) {
+//                if (stack.isNotEmpty() && stack.peek() == board[i][it - 1]) {
+//                    answer += 2
+//                    stack.pop()
+//                } else {
+//                    stack.push(board[i][it - 1])
+//                }
+//                board[i][it - 1] = 0
+//
+//                break
+//            }
+//        }
+//    }
+//    return answer
+//}
 // 4 3 1 1 3 2 4
 // 4 3 3 2 4
