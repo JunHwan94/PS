@@ -32,7 +32,7 @@ fun problem3(): Long {
 }
 
 
-fun problem20(): Int = fac(BigInteger.valueOf(100)).toString().map{ it.toInt() - 48 }.fold(0){ acc, next -> acc + next }
+//fun problem20(): Int = fac(BigInteger.valueOf(100)).toString().map{ it.toInt() - 48 }.fold(0){ acc, next -> acc + next }
         //fold(BigInteger.ZERO){acc, c: Char -> acc + BigInteger.valueOf(c.toLong()) }
         //.takeWhile { it > BigInteger.ZERO }.fold(BigInteger.ZERO){acc, next -> acc + next} + fac(BigInteger.valueOf(100)) % BigInteger.TEN
-fun fac(n: BigInteger): BigInteger = if(n == BigInteger.ONE) BigInteger.ONE else n * fac(n - BigInteger.ONE)
+//private fun fac(n: BigInteger): BigInteger = if(n == BigInteger.ONE) BigInteger.ONE else n * fac(n - BigInteger.ONE)

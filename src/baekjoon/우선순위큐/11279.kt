@@ -1,4 +1,4 @@
-package baekjoon.priorityqueue
+package baekjoon.우선순위큐
 
 import java.io.*
 import java.util.*
