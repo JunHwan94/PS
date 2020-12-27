@@ -2,6 +2,7 @@ package baekjoon.`while`
 
 import java.io.*
 
+// 더하기 사이클
 fun main(){
     val br = BufferedReader(InputStreamReader(System.`in`))
     var n = Integer.parseInt((br.readLine()))
