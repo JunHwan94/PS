@@ -1,7 +1,7 @@
 package baekjoon
 import java.util.*
 
-fun main(){
+private fun main(){
     val sc = Scanner(System.`in`)
     var input = sc.nextInt()
     val init = input
