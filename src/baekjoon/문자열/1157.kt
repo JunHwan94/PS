@@ -1,10 +1,9 @@
 package baekjoon.문자열
 
-
 fun main(){
     val arr = Array(26){ 0 }
     System.`in`.bufferedReader().readLine().onEach { c ->
-        arr[c.toLowerCase() - 'a']++
+        arr[c.toUpperCase() - 'A']++
     }
     var idx = 0
     var max = 0
@@ -22,5 +21,5 @@ fun main(){
     }
     if(maxCnt > 1){
         println("?")
-    }else println((idx + 'a'.toInt()).toChar().toUpperCase())
+    }else println((idx + 'A'.toInt()).toChar())
 }
