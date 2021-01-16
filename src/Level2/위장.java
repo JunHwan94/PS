@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class 위장 {
+public class 위장 { // 틀림
     public static int solution(String[][] clothes){
         int answer = 0;
         List<String> kinds = new ArrayList<>();

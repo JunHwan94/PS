@@ -2,7 +2,7 @@ package Level2;
 
 import java.util.*;
 
-public class 큰수만들기{
+public class 큰수만들기{ // 틀림
     public static String solution(String number, int k){
         String answer = "";
 

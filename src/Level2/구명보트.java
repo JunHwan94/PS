@@ -2,7 +2,7 @@ package Level2;
 
 import java.util.*;
 import java.util.stream.*;
-public class 구명보트 {
+public class 구명보트 { // 틀림
     public static int solution(int[] people, int limit) {
         int answer = 0;
         List<Integer> pList =
