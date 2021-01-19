@@ -1,6 +1,7 @@
 package baekjoon.순열.P15649
 
 import java.util.*
+
 // n과 m (1)
 const val MAX = 9
 val bArr = BooleanArray(MAX)
