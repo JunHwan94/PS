@@ -4,7 +4,7 @@ import java.lang.StringBuilder
 import java.util.*
 
 // n과 m (11)
-const val MAX = 9
+const val MAX = 8
 var n = 0
 var m = 0
 var arr = Array(MAX){ 0 }
@@ -32,7 +32,7 @@ fun permutation(cnt: Int){
             tsb.append("${arr[i]} ")
         }
 
-        if(!(bMap[tsb.toString()] ?: false)) {
+        if(bMap[tsb.toString()] != true) {
             bMap[tsb.toString()] = true
             sb.append("$tsb\n")
         }

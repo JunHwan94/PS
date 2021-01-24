@@ -33,7 +33,7 @@ fun permutation(cnt: Int){
             tsb.append("${arr[i]} ")
         }
 
-        if(!(bMap[tsb.toString()] ?: false)) {
+        if(bMap[tsb.toString()] != true) {
             bMap[tsb.toString()] = true
             sb.append("$tsb\n")
         }
