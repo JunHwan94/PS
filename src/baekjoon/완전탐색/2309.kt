@@ -1,7 +1,6 @@
 package baekjoon.완전탐색
 
-import java.io.BufferedReader
-import java.io.InputStreamReader
+import java.io.*
 
 val arr = IntArray(9)
 val visited = BooleanArray(9)
@@ -11,11 +10,11 @@ fun main(){
     for(i in arr.indices){
         arr[i] = Integer.parseInt(br.readLine())
     }
-    dfs(0, 0)
+    selectDwarf(0, 0)
 }
 
 var isOver = false
-fun dfs(sum: Int, depth: Int){
+fun selectDwarf(sum: Int, depth: Int){
     if(isOver) return
     when{
         sum == 100 && depth == 7 -> {
@@ -34,7 +33,7 @@ fun dfs(sum: Int, depth: Int){
         if(!visited[i]){
             visited[i] = true
             printArr[depth] = arr[i]
-            dfs(sum + arr[i], depth + 1)
+            selectDwarf(sum + arr[i], depth + 1)
             visited[i] = false
         }
     }
