@@ -33,8 +33,8 @@ fun main(){
 }
 
 fun dfs(sum: Int, depth: Int){
-    when{
-        depth == 3 -> {
+    when (depth) {
+        3 -> {
             if(sum <= m) {
                 dList.add(m - sum) // 각 합의 차이 저장
             }
