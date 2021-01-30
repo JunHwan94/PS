@@ -2,7 +2,8 @@ package baekjoon.완전탐색.P2667
 
 import java.util.*
 
-var field = Array(25){ BooleanArray(25) }
+// 단지번호붙이기
+var field = Array(25){ "" }
 var visited = Array(25){ BooleanArray(25) }
 var N = 0
 val cntList = ArrayList<Int>()
@@ -13,17 +14,14 @@ fun main(){
     N = br.readLine().toInt()
     for(i in 0 until N) {
         val line = br.readLine()
-        for(j in 0 until N) {
-            if(line[j] == '1') field[i][j] = true
-        }
+        field[i] = line
     }
     var cnt = 0
     for(i in 0 until N){
         for(j in 0 until N){
-            if(field[i][j] && !visited[i][j]) {
+            if(field[i][j] == '1' && !visited[i][j]) {
                 cntList.add(0)
-                dfs(i, j, cnt)
-                cnt++
+                dfs(i, j, cnt++)
             }
         }
     }
@@ -46,8 +44,9 @@ fun dfs(x: Int, y: Int, cnt: Int){
         val ny = y + dy[i]
         if(nx < 0 || nx >= N || ny < 0 || ny >= N)
             continue
-        if(!field[nx][ny] || visited[nx][ny])
+        if(field[nx][ny] == '0' || visited[nx][ny])
             continue
+
         dfs(nx, ny, cnt)
     }
 }

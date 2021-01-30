@@ -2,8 +2,9 @@ package baekjoon.완전탐색.P2798
 
 import java.util.*
 
+// 블랙잭
 var arr = IntArray(0) // 입력받을 배열
-val dList = ArrayList<Int>() // 차이 리스트
+val pq = PriorityQueue<Int>(Collections.reverseOrder()) // 차이 리스트
 val visited = BooleanArray(100)
 var m = 0
 fun main(){
@@ -18,26 +19,18 @@ fun main(){
                 arr[i] = Integer.parseInt(nextToken())
         }
         dfs(0, 0)
-
-        var min = 300_000
-        var index = 0
-        for(i in dList.indices) {
-            if(dList[i] < min) {
-                min = dList[i]
-                index = i
-            }
-        }
-
-        println(m - dList[index])
+        println(pq.poll())
     }
 }
 
+/**
+ * @param sum 현재 뽑은 값들의 합
+ * @param depth 현재 탐색 깊이
+ */
 fun dfs(sum: Int, depth: Int){
     when (depth) {
         3 -> {
-            if(sum <= m) {
-                dList.add(m - sum) // 각 합의 차이 저장
-            }
+            if(sum <= m) pq.offer(sum) // 각 합 저장
             return
         }
     }

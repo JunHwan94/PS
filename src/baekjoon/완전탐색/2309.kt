@@ -1,5 +1,6 @@
 package baekjoon.완전탐색.P2309
 
+// 난쟁이
 val arr = IntArray(9)
 val visited = BooleanArray(9)
 val printArr = IntArray(7)
