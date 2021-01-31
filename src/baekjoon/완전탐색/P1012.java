@@ -34,24 +34,32 @@ public class P1012 {
                 }
             }
             System.out.println(cnt);
+            // 밭, 방문 초기화
             field = new boolean[50][50];
             visited = new boolean[50][50];
         }
     }
 
+    // 사방탐색하며 방문 표시
     static int[] dx = {-1, 1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
+    /**
+     * @param x x좌표
+     * @param y y좌표
+     */
     public static void dfs(int x, int y){
         visited[x][y] = true;
 
         for(int k = 0; k < 4; k++){
             int nx = x + dx[k];
             int ny = y + dy[k];
+            // 다음 인덱스가 밭을 벗어나면 넘어가기
             if(nx < 0 || nx >= width || ny < 0 || ny >= height)
                 continue;
+            // 배추 없거나 방문했으면 넘어가기
             if(!field[nx][ny] || visited[nx][ny])
                 continue;
-            dfs(nx, ny);
+            dfs(nx, ny); // 계속 탐색
         }
     }
 }
