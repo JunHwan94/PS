@@ -24,6 +24,7 @@ public class P2798 {
 
         dfs(0, 0);
         System.out.println(pq.poll());
+        br.close();
     }
     /**
      * @param sum 현재 뽑은 값들의 합

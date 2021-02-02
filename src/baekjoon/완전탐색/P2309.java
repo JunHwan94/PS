@@ -15,6 +15,7 @@ public class P2309 {
             dwarfs[i] = Integer.parseInt(br.readLine());
         }
         selectDwarf(0, 0);
+        br.close();
     }
     /**
      * @param sum 현재 뽑은 값들의 합

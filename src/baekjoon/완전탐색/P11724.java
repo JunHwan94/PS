@@ -33,6 +33,7 @@ public class P11724 {
             }
         }
         System.out.println(cnt);
+        br.close();
     }
 
     static int cnt;

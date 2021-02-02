@@ -28,6 +28,7 @@ public class P2606 {
         dfs(1);
 
         System.out.println(--cnt);
+        br.close();
     }
 
     static int cnt;

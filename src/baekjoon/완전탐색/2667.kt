@@ -36,6 +36,11 @@ fun main(){
 
 val dx = intArrayOf(-1, 1, 0, 0)
 val dy = intArrayOf(0, 0, -1, 1)
+/**
+ * @param x x좌표
+ * @param y y좌표
+ * @param cnt 아파트 수
+ */
 fun dfs(x: Int, y: Int, cnt: Int){
     visited[x][y] = true
     cntList[cnt]++

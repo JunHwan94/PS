@@ -1,8 +1,10 @@
-package baekjoon.완전탐색;
+package baekjoon.BFS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class P1012 {
@@ -28,7 +30,7 @@ public class P1012 {
             for (int i = 0; i < width; i++) {
                 for (int j = 0; j < height; j++) {
                     if (field[i][j] && !visited[i][j]) {
-                        dfs(i, j);
+                        bfs(i, j);
                         cnt++;
                     }
                 }
@@ -41,26 +43,44 @@ public class P1012 {
         br.close();
     }
 
-    // 사방탐색하며 방문 표시
     static int[] dx = {-1, 1, 0, 0};
     static int[] dy = {0, 0, -1, 1};
     /**
      * @param x x좌표
      * @param y y좌표
      */
-    public static void dfs(int x, int y){
+    public static void bfs(int x, int y){
         visited[x][y] = true;
+        Queue<Pair> q = new LinkedList<>();
+        q.offer(new Pair(x, y));
+        while(!q.isEmpty()){
+             x = q.peek().first;
+             y = q.peek().second;
+             q.poll();
+            // 사방탐색하며 방문 표시
+            for(int k = 0; k < 4; k++){
+                int nx = x + dx[k];
+                int ny = y + dy[k];
+                // 다음 인덱스가 밭을 벗어나면 넘어가기
+                if(nx < 0 || nx >= width || ny < 0 || ny >= height)
+                    continue;
+                // 배추 없거나 방문했으면 넘어가기
+                if(!field[nx][ny] || visited[nx][ny])
+                    continue;
 
-        for(int k = 0; k < 4; k++){
-            int nx = x + dx[k];
-            int ny = y + dy[k];
-            // 다음 인덱스가 밭을 벗어나면 넘어가기
-            if(nx < 0 || nx >= width || ny < 0 || ny >= height)
-                continue;
-            // 배추 없거나 방문했으면 넘어가기
-            if(!field[nx][ny] || visited[nx][ny])
-                continue;
-            dfs(nx, ny); // 계속 탐색
+                q.offer(new Pair(nx, ny)); // 배추는 좌표 추가
+                visited[nx][ny] = true; // 방문 표시
+            }
+        }
+    }
+
+    static class Pair{ // 코틀린 Pair처럼 만듦. 어차피 int만 들어가서 제네릭은 안씀
+        int first;
+        int second;
+
+        Pair(int first, int second){
+            this.first = first;
+            this.second = second;
         }
     }
 }
