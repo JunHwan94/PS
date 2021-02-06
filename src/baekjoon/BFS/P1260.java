@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
-import java.util.function.Function;
 
 public class P1260 {
     static int n;
