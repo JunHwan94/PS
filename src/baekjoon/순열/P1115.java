@@ -3,77 +3,81 @@ package baekjoon.순열;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.HashSet;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Set;
 import java.util.StringTokenizer;
-
+import java.util.function.Function;
 // 순열
 // 풀이중
+// 메모리초과
 public class P1115 {
-    public static void main(String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int len = Integer.parseInt(br.readLine());
-        int[] a = new int[len];
+	static int N;
+	static int[] oArr; // 원래 배열
+	static int[] tArr; // 비교대상
+	static int[] childArr; // 제시된 식에 따라 비교대상 배열로부터 만들어진 배열
+	static boolean[] visited;
+	static Function<String, Integer> stoi = Integer::parseInt;
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		N = stoi.apply(br.readLine());
+		oArr = new int[N];
+		tArr = new int[N];
+		childArr = new int[N];
+		visited = new boolean[N + 1];
+		StringTokenizer token = new StringTokenizer(br.readLine());
+		for(int i = 0; i < N; i++) {
+			oArr[i] = stoi.apply(token.nextToken());
+		}
+		
+		perm(0); // p와 같은 원소로 c만들기
+		
+		System.out.println(mq.size());
+		System.out.println(mq.poll());
+	}
 
-        StringTokenizer token = new StringTokenizer(br.readLine());
-
-        // base 정의
-        for(int i = 0; i < len; i++){
-            a[i] = Integer.parseInt(token.nextToken());
-        }
-
-        getPermutation(a, 0);
-
-        int[] b = new int[len];
-        b[0] = 0;
-        // b 정의
-        for(int i = 1; i < len; i++){
-            b[i] = a[b[i-1]];
-        }
-//        System.out.println(Arrays.toString(a));
-//        System.out.println(Arrays.toString(b));
-
-//        System.out.println(fac(4));
-    }
-
-    public static int fac(int i){
-        if(i == 1)
-            return 1;
-        else
-            return i * fac(i - 1);
-    }
-
-    public static void getPermutation(int[] arr, int startIdx){
-        int length = arr.length;
-        int[] b = new int[length];
-        Set<Integer> bSet = new HashSet<>();
-        b[0] = 0;
-        for(int i = 1; i < length; i++){
-            b[i] = arr[b[i]];
-            bSet.add(b[i]);
-        }
-        System.out.println(Arrays.toString(b));
-        if(bSet.size() != b.length) {
-            System.out.println("b는 완벽한 순열이 아님");
-        }else System.out.println("b는 완벽한 순열");
-
-        if(startIdx == length - 1){
-            for(int n: arr) System.out.print(n + " ");
-            System.out.println();
-            return;
-        }
-
-        for(int i = startIdx; i < length; i++){
-            swap(arr, startIdx, i);
-            getPermutation(arr, startIdx + 1);
-            swap(arr, startIdx, i);
-        }
-    }
-
-    public static void swap(int[] arr, int n1, int n2){
-        int temp = arr[n1];
-        arr[n1] = arr[n2];
-        arr[n2] = temp;
-    }
+	static Queue<Integer> mq = new PriorityQueue<>();
+	static boolean isOver;
+	static void perm(int depth) {
+		if(isOver) return;
+		if(depth == N) {
+//			System.out.println(Arrays.toString(tArr));
+			cPerm(0);
+			if(isPerfect) {
+				int cnt = 0;
+				for(int i = 0; i < N; i++) {
+					if(oArr[i] != tArr[i]) cnt++;
+				}
+				mq.offer(cnt);
+			}
+			return;
+		}
+			
+		for(int i = 0; i < N; i++) {
+			if(visited[i]) continue;
+			visited[i] = true;
+			tArr[depth] = oArr[i];
+			perm(depth + 1);
+			visited[i] = false;
+		}
+	}
+	
+	static boolean isPerfect;
+	static void cPerm(int depth) {
+		isPerfect = false;
+		Set<Integer> cSet = new HashSet<>();
+		childArr[0] = 0;
+		cSet.add(0);
+		for(int i = 1; i < N; i++) {
+			childArr[i] = tArr[childArr[i - 1]];
+			cSet.add(childArr[i]);
+		}
+//		System.out.println(Arrays.toString(childArr));
+		if(cSet.size() == N) {
+			isPerfect = true;
+			isOver = true;
+		}
+//		System.out.println(isPerfect);
+	}
 }
