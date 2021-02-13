@@ -1,4 +1,4 @@
-package baekjoon.완전탐색;
+package baekjoon.DFS;
 
 import java.io.*;
 import java.util.Arrays;

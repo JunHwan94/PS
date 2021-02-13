@@ -1,4 +1,4 @@
-package baekjoon.순열;
+package baekjoon.완전탐색.순열;
 
 // n과 m (1)
 import java.io.BufferedReader;

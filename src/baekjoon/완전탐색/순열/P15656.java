@@ -1,12 +1,19 @@
-package baekjoon.순열;
-// n과 m (3)
-import java.io.*;
+package baekjoon.완전탐색.순열;
+// n과 m (7)
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.StringTokenizer;
 
-public class P15651 {
+public class P15656 {
     static int n;
     static int r;
     static int[] arr;
+    static List<Integer> list = new ArrayList<>();
     static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -14,6 +21,11 @@ public class P15651 {
         n = Integer.parseInt(token.nextToken());
         r = Integer.parseInt(token.nextToken());
         arr = new int[r];
+
+        token = new StringTokenizer(br.readLine());
+        while(token.hasMoreTokens())
+            list.add(Integer.parseInt(token.nextToken()));
+        Collections.sort(list);
         permutation(0);
         System.out.println(sb.toString());
     }
@@ -26,9 +38,9 @@ public class P15651 {
             return;
         }
 
-        for(int i = 1; i <= n; i++){
-                arr[depth] = i;
-                permutation(depth + 1);
+        for(int i = 0; i < list.size(); i++){
+            arr[depth] = list.get(i);
+            permutation(depth + 1);
         }
     }
 }

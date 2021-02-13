@@ -1,16 +1,16 @@
-package baekjoon.순열.P15665
+package baekjoon.완전탐색.순열.P15654
 
 import java.lang.StringBuilder
 import java.util.*
 
-// n과 m (11)
-const val MAX = 8
+// n과 m (5)
+const val MAX = 9
 var n = 0
 var m = 0
 var arr = Array(MAX){ 0 }
+val bArr = BooleanArray(MAX)
 val sb = StringBuilder()
 var list = ArrayList<Int>()
-val bMap = HashMap<String, Boolean>()
 fun main(){
     StringTokenizer(readLine()).run {
         n = Integer.parseInt(nextToken())
@@ -27,20 +27,19 @@ fun main(){
 
 fun permutation(cnt: Int){
     if (cnt == m) {
-        val tsb = StringBuilder()
         for (i in 0 until m) {
-            tsb.append("${arr[i]} ")
+            sb.append("${arr[i]} ")
         }
-
-        if(bMap[tsb.toString()] != true) {
-            bMap[tsb.toString()] = true
-            sb.append("$tsb\n")
-        }
+        sb.append("\n")
         return
     }
 
     for (i in list.indices){
-        arr[cnt] = list[i]
-        permutation(cnt + 1)
+        if(!bArr[i]) {
+            bArr[i] = true
+            arr[cnt] = list[i]
+            permutation(cnt + 1)
+            bArr[i] = false
+        }
     }
 }

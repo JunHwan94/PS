@@ -1,4 +1,4 @@
-package baekjoon.완전탐색;
+package baekjoon.완전탐색.부분집합;
 
 import java.io.BufferedReader;
 import java.io.IOException;

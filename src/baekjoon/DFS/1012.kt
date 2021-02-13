@@ -1,4 +1,4 @@
-package baekjoon.완전탐색.P1012
+package baekjoon.DFS;
 
 // 유기농배추
 var field = Array(51){ BooleanArray(51) }
@@ -38,9 +38,6 @@ fun main(){
 val dx = intArrayOf(-1, 1, 0, 0)
 val dy = intArrayOf(0, 0, -1, 1)
 
-/**
- *
- */
 fun dfs(x: Int, y: Int){
     visited[x][y] = true
 

@@ -1,4 +1,4 @@
-package baekjoon.순열;
+package baekjoon.완전탐색.순열;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,7 +40,6 @@ public class P14888 {
         }
 
         perm(0);
-
         System.out.println(max);
         System.out.println(min);
     }

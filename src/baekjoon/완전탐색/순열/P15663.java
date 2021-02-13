@@ -1,4 +1,4 @@
-package baekjoon.순열;
+package baekjoon.완전탐색.순열;
 // n과 m (9)
 // 못품ㅠ
 import java.io.*;
