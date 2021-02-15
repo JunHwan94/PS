@@ -33,7 +33,7 @@ public class P14501 {
 
         int tCnt = cnt + days[cnt];
         // 만약 선택하면 지금 선택한 상담에 걸리는 일수를 더해서 다음 선택할 상담으로 건너뛴다
-        // 건너뛰는 위치가 인덱스 퇴사 이후면 진행못하므로 금액에 더하지 않는다
+        // 건너뛰는 위치가 최대 인덱스 초과-퇴사 이후-면 진행못하므로 금액에 더하지 않는다
         selectConsult(tCnt, day + days[cnt], tCnt > N ? p : p + prices[cnt]);
 
         selectConsult(cnt + 1, day, p);
