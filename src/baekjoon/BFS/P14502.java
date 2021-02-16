@@ -65,6 +65,7 @@ public class P14502 {
     static int[] dx = {-1, 1, 0 ,0};
     static int[] dy = {0, 0, -1, 1};
     static void bfs(int x, int y){
+        int[][] temp = lab;
         visited[y][x] = true;
         Queue<Pair> q = new LinkedList<>();
         q.offer(new Pair(x, y));
@@ -75,10 +76,10 @@ public class P14502 {
                 int nx = x + dx[i];
                 int ny = y + dy[i];
                 if(nx < 0 || nx >= M || ny < 0 || ny >= N) continue;
-                if(visited[ny][nx] || lab[ny][nx] == 1 || lab[ny][nx] == 2) continue;
+                if(visited[ny][nx] || temp[ny][nx] == 1 || temp[ny][nx] == 2) continue;
                 q.offer(new Pair(nx, ny));
                 visited[ny][nx] = true;
-                lab[ny][nx] = 2;
+                temp[ny][nx] = 2;
             }
         }
     }
