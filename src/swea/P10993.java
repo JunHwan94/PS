@@ -8,10 +8,10 @@ import java.util.StringTokenizer;
 public class P10993 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
         int T = Integer.parseInt(br.readLine());
         StringTokenizer token;
         for(int t = 1; t <= T; t++){
+            StringBuilder sb = new StringBuilder();
             int N = Integer.parseInt(br.readLine());
             int[] xs = new int[N];
             int[] ys = new int[N];
@@ -25,7 +25,7 @@ public class P10993 {
 
             char[] rArr = new char[N];
             for(int i = 0; i < N; i++){
-                double max = -1;
+                double max = 0;
                 double[] rcvs = new double[N];
                 for (int j = 0; j < N; j++) {
                     if(i == j) continue;
@@ -41,14 +41,14 @@ public class P10993 {
                 // 자신에게 영향력을 행사하는 도시가 있으면 수행
                 int cnt = 0;
                 int mCity = -1;
-                if(max > -1) {
+                if(max > 0) {
                     for (int j = 0; j < N; j++) {
                         if(rcvs[j] == max) {
                             cnt++;
                             mCity = j + 1;
                         }
                     }
-                    // 영향받는 도시 1개면 그 도시 따르기, 도시 번호 출력
+                    // 영향받는 도시 1개면 그 도시 따르기, 도시 번호 저장
                     if(cnt == 1){
                         rArr[i] = (char)(mCity + '0');
                     }else{ // 공화제 D
@@ -65,11 +65,20 @@ public class P10993 {
                     }
                 }
             }
+            // 시간초과
+//            int tmp;
+//            for (int i = 0; i < N; i++) {
+//                tmp = rArr[i] - '1';
+//                while(tmp < N && tmp >= 0){
+//                    rArr[i] = (char)(tmp + '1');
+//                    tmp = rArr[tmp] - '1';
+//                }
+//            }
+
             for (int i = 0; i < N; i++) {
                 sb.append(rArr[i]).append(" ");
             }
             System.out.println("#" + t + " " + sb);
-            sb.delete(0, sb.length());
         }
     }
 }
