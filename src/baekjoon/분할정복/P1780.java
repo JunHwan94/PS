@@ -28,9 +28,9 @@ public class P1780 {
     }
 
     static void checkPaper(int x, int y, int n){
+        boolean allSame = true;
+        int tmp = paper[y][x];
         if(n == 3) {
-            boolean allSame = true;
-            int tmp = paper[y][x];
             int[] tCnts = new int[3];
             for (int i = y; i < y + 3; i++) {
                 for (int j = x; j < x + 3; j++) {
@@ -49,8 +49,6 @@ public class P1780 {
             }
             return;
         }else{
-            boolean allSame = true;
-            int tmp = paper[y][x];
             Loop1 : for (int i = y; i < y + n; i++) {
                 for (int j = x; j < x + n; j++) {
                     if(tmp != paper[i][j]) {
