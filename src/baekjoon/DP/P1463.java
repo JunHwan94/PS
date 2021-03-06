@@ -6,20 +6,16 @@ import java.io.InputStreamReader;
 
 public class P1463 {
     static int N;
+    static int[] arr;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
-
-        int start = 1;
-        int cnt = 0;
-        while(true){
-            System.out.println(start);
-            if(start == N) break;
-            if(start * 3 < N) start *= 3;
-            else if(start * 2 < N) start *= 2;
-            else start += 1;
-            cnt++;
+        arr = new int[N + 1];
+        for(int i = 2; i <= N; i++){
+            arr[i] = arr[i - 1] + 1;
+            if(i % 2 == 0) arr[i] = Math.min(arr[i], arr[i / 2] + 1);
+            if(i % 3 == 0) arr[i] = Math.min(arr[i], arr[i / 3] + 1);
         }
-        System.out.println(cnt);
+        System.out.println(arr[N]);
     }
 }
