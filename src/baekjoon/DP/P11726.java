@@ -12,13 +12,13 @@ public class P11726 {
         tiles[1] = 1;
         tiles[2] = 2;
         int N = Integer.parseInt(br.readLine());
-        System.out.println(tile(N));
+        System.out.println(tiling(N));
     }
 
-    static long tile(int n){
+    static long tiling(int n){
         if(n <= 2) return tiles[n];
-        if(tiles[n - 1] == 0) tiles[n - 1] = tile(n - 1);
-        if(tiles[n - 2] == 0) tiles[n - 2] = tile(n - 2);
+        if(tiles[n - 1] == 0) tiles[n - 1] = tiling(n - 1);
+        if(tiles[n - 2] == 0) tiles[n - 2] = tiling(n - 2);
         return tiles[n] = (tiles[n - 1] + tiles[n - 2]) % 10007;
     }
 }

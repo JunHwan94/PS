@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class P1003 {
-    static int fibs[];
-    static int cnts[][];
+    static int[] fibs;
+    static int[][] cnts;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
@@ -15,6 +15,7 @@ public class P1003 {
             fibs[0] = 0;
             fibs[1] = 1;
             cnts = new int[41][2];
+            // cnts[n][0~1] : n번째 수 연산을 위해 0, 1번째가 호출된 횟수
             cnts[0][0] = 1;
             cnts[1][1] = 1;
             int n = Integer.parseInt(br.readLine());
@@ -28,6 +29,7 @@ public class P1003 {
 
     static int fib(int n){
         if(n != 0 && fibs[n] == 0) {
+            // 메모이제이션해서 값 0일 때만 재귀 수행
             if(fibs[n - 1] == 0) fibs[n - 1] = fib(n - 1);
             if(fibs[n - 2] == 0) fibs[n - 2] = fib(n - 2);
             fibs[n] = fibs[n - 1] + fibs[n - 2];
@@ -39,6 +41,7 @@ public class P1003 {
         if(n != 0 && cnts[n][0] == 0 && cnts[n][1] == 0){
             int[] cTmp1 = cnt(n - 1);
             int[] cTmp2 = cnt(n - 2);
+            // 메모이제이션해서 값 0일 때만 재귀 수행
             if(cnts[n - 1][0] == 0) cnts[n - 1][0] = cTmp1[0];
             if(cnts[n - 1][1] == 0) cnts[n - 1][1] = cTmp1[1];
             if(cnts[n - 2][0] == 0) cnts[n - 2][0] = cTmp2[0];
