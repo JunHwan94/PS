@@ -48,10 +48,9 @@ public class P1949 {
         for (int i = 0; i < 4; i++) {
             int nx = x + dx[i];
             int ny = y + dy[i];
-            if(nx < 0 || nx >= N || ny < 0 || ny >= N) continue;
-            if(visited[ny][nx]) continue;
-            if(field[y][x] <= field[ny][nx] && !canCut) continue;
-            if(field[y][x] <= field[ny][nx] && canCut) {
+            if(nx < 0 || nx >= N || ny < 0 || ny >= N || visited[ny][nx]) continue;
+            if(field[y][x] <= field[ny][nx]){
+                if(!canCut) continue;
                 canCut = false;
                 int tHeight = field[ny][nx];
                 for(int k = 1; k <= K; k++) {
@@ -71,12 +70,11 @@ public class P1949 {
                 dfs(nx, ny, length + 1, canCut);
                 field[ny][nx] = save;
                 canCut = true;
-                visited[ny][nx] = false;
             }else {
                 visited[ny][nx] = true;
                 dfs(nx, ny, length + 1, canCut);
-                visited[ny][nx] = false;
             }
+            visited[ny][nx] = false;
         }
         max = Math.max(max, length);
     }
