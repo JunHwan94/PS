@@ -1,6 +1,7 @@
 package baekjoon.BFS
 
 import java.util.*
+import kotlin.math.max
 
 class P2206 {
 }
@@ -18,21 +19,31 @@ fun main(){
         for(i in 0 until N){
             map[i] = readLine().toCharArray()
         }
-        visited = Array(N){ BooleanArray(M) }
-        visited[0][0] = true
     }
     val q = LinkedList<Pair<Int, Int>>()
-    q.offer(Pair(0, 0))
-    bfs(q, true)
-    val res = map[N - 1][M - 1]
-    println(if(res == '0') -1 else max - '0' + 2)
+    for(i in 0 until N){
+        for(j in 0 until M){
+            if(map[i][j] == '1'){
+                visited = Array(N){ BooleanArray(M) }
+                visited[0][0] = true
+                map[i][j] = '0'
+                val tMap = Array(map.size){ map[it].copyOf(map[it].size) }
+                q.offer(Pair(0, 0))
+                bfs(q, tMap)
+                map[i][j] = '1'
+//                tMap.forEach{ println(it) }
+            }
+        }
+    }
+//    val res = map[N - 1][M - 1]
+    println(if(max == Char.MAX_VALUE) -1 else max - '0' + 1)
 //    map.forEach { println(Arrays.toString(it)) }
 }
 // bfs
 val dx = arrayOf(1, 0, -1 ,0)
 val dy = arrayOf(0, 1, 0, -1)
-var max = '0'
-fun bfs(q: LinkedList<Pair<Int, Int>>, haveOpp: Boolean){
+var max = Char.MAX_VALUE
+fun bfs(q: LinkedList<Pair<Int, Int>>, tMap: Array<CharArray>){
     while(q.isNotEmpty()){
         val loc = q.poll()
         val x = loc.first
@@ -42,32 +53,16 @@ fun bfs(q: LinkedList<Pair<Int, Int>>, haveOpp: Boolean){
             val ny = y + dy[i]
             if(nx < 0 || nx >= M || ny < 0 || ny >= N) continue
             if(visited[ny][nx]) continue
-            if(map[ny][nx] == '1'){
-                // 기회 남았으면 부분집합으로
-                if(haveOpp) supSet(q, Pair(nx, ny))
-                // 안남았으면 return
-                else return
-                    //return
-            }
-            if(map[ny][nx] != '1'){
+
+            if(tMap[ny][nx] == '0'){
                 visited[ny][nx] = true
                 q.offer(Pair(nx, ny))
-                map[ny][nx] = map[y][x] + 1
+                tMap[ny][nx] = tMap[y][x] + 1
+//                println("${tMap[y][x]}에서 1 더해서 ${tMap[ny][nx]}")
             }
         }
     }
-    max = map[N - 1][M - 1]
-}
-
-fun supSet(q: LinkedList<Pair<Int, Int>>, p: Pair<Int, Int>){
-    visited[p.second][p.first] = true
-    q.offer(Pair(p.first, p.second))
-    // 여기서 벽 허물기, 안허물기 bfs호출
-    map[p.second][p.first] = '0'
-    bfs(q, false)
-
-    visited[p.second][p.first] = false
-    q.poll()
-    map[p.second][p.first] = '1'
-    bfs(q, true)
+    val last = tMap[N - 1][M - 1]
+    if(last > '0')
+        max = if(last < max) last else max
 }

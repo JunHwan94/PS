@@ -46,7 +46,7 @@ fun main() {
             }
         }
     }
-    println(max - 1)
+    println(if(max == 0) 0 else max - 1)
 }
 
 // 3차원 dx dy dz
