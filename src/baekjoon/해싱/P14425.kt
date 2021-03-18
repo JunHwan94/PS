@@ -1,7 +1,7 @@
 package baekjoon
 
-var N = 0
-var M = 0
+private var N = 0
+private var M = 0
 fun main(){
     val br = System.`in`.bufferedReader()
     val nm = br.readLine().split(" ")

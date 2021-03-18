@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class P1759 {
-
 	static int L, C;
 	static char[] inArr;
 	public static void main(String[] args) throws IOException{
@@ -26,10 +25,8 @@ public class P1759 {
 	static String aeiou = "aeiou";
 	static void supSet(int cnt, String result, int conCnt, int vowCnt) {
 		if(cnt == C) {
-			if(result.length() == L) {
-				if(conCnt > 1 && vowCnt > 0)
+			if(result.length() == L && conCnt > 1 && vowCnt > 0)
 					System.out.println(result);
-			}
 			return;
 		}
 

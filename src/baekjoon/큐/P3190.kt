@@ -4,7 +4,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 val posQueue = LinkedList<Pair<Int, Int>>().apply { offer(Pair(1, 1)) }
-var N = 0
+private var N = 0
 val apples = ArrayList<Pair<Int, Int>>()
 val cmds = LinkedList<Pair<Int, String>>()
 fun main(){
