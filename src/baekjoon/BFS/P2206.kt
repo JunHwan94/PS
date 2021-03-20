@@ -1,10 +1,6 @@
 package baekjoon.BFS
 
 import java.util.*
-import kotlin.math.max
-
-class P2206 {
-}
 
 lateinit var map: Array<CharArray>
 lateinit var visited: Array<BooleanArray>
