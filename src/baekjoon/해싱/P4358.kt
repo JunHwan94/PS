@@ -20,4 +20,3 @@ fun main(){
         println(String.format("%.4f", map[s]!! / hSet.size.toDouble()))
     }
 }
-

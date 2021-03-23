@@ -2,12 +2,12 @@ package baekjoon.트리
 
 import kotlin.collections.HashSet
 
-private lateinit var tTree: Array<CharArray>
+private lateinit var tree: Array<CharArray>
 fun main() {
     val br = System.`in`.bufferedReader()
     val N = br.readLine().toInt()
     val nodeSet = HashSet<Char>()
-    tTree = Array(27) { CharArray(2) }.apply {
+    tree = Array(27) { CharArray(2) }.apply {
         repeat(N) {
             val input = br.readLine().split(" ")
             val node = input[0].toCharArray()[0].also { nodeSet.add(it) }
@@ -27,31 +27,31 @@ fun main() {
 }
 
 fun preOrder(i: Int){
-    if(i >= tTree.size) return
+    if(i >= tree.size) return
     val c = (i + 64).toChar()
     if(c != '.') {
         print(c)
-        preOrder(tTree[i][0].toInt() - 64)
-        preOrder(tTree[i][1].toInt() - 64)
+        preOrder(tree[i][0].toInt() - 64)
+        preOrder(tree[i][1].toInt() - 64)
     }
 }
 
 fun inOrder(i: Int){
-    if(i >= tTree.size) return
+    if(i >= tree.size) return
     val c = (i + 64).toChar()
     if(c != '.') {
-        inOrder(tTree[i][0].toInt() - 64)
+        inOrder(tree[i][0].toInt() - 64)
         print(c)
-        inOrder(tTree[i][1].toInt() - 64)
+        inOrder(tree[i][1].toInt() - 64)
     }
 }
 
 fun postOrder(i: Int){
-    if(i >= tTree.size) return
+    if(i >= tree.size) return
     val c = (i + 64).toChar()
     if(c != '.') {
-        postOrder(tTree[i][0].toInt() - 64)
-        postOrder(tTree[i][1].toInt() - 64)
+        postOrder(tree[i][0].toInt() - 64)
+        postOrder(tree[i][1].toInt() - 64)
         print(c)
     }
 }
