@@ -20,27 +20,23 @@ public class P16562{
         costs = new int[N + 1];
         costs[0] = 0;
         for (int i = 1; i <= N; i++) {
-            int in = stoi(st.nextToken());
-//            System.out.println(in);
-            costs[i] = in;
+            costs[i] = stoi(st.nextToken());
         }
-//        Arrays.stream(students).forEach(it -> System.out.println(it.cost));
         parents = new int[N + 1];
         make();
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             int a = stoi(st.nextToken());
             int b = stoi(st.nextToken());
-//            if(findSet(a) != findSet(b))
                 union(a, b); // 주어진 친구 맺기
         }
 
-        System.out.println(Arrays.toString(parents));
+//        System.out.println(Arrays.toString(parents));
 
         int min = 0;
         for (int i = 1; i <= N; i++) {
             if(findSet(i) != 0){
-                min += costs[findSet(i)];
+                min += costs[findSet(i)]; // 작은 비용을 가진 친구가 대표인 집합의 비용
                 union(0, findSet(i));
             }
         }
@@ -62,6 +58,7 @@ public class P16562{
         int aRoot = findSet(a);
         int bRoot = findSet(b);
         if(aRoot == bRoot) return false;
+        // 작은 비용으로 합치기
         if(costs[aRoot] < costs[bRoot]) parents[bRoot] = aRoot;
         else parents[aRoot] = bRoot;
         return true;
