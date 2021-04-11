@@ -50,7 +50,7 @@ public class P4485 {
                         int nx = j + dx[k];
                         int ny = i + dy[k];
                         if(nx < 0 || nx >= N || ny < 0 || ny >= N) continue;
-                        edgeList[ny][nx].add(new Edge(j, i, map[i][j])); // 사방에서 이쪽을 가리키는 간선 추가
+                        edgeList[ny][nx].add(new Edge(j, i, map[i][j])); // 사방에서 이쪽을 가리키는 간선 추가, 비용은 이 칸의 값
                     }
                 }
             }
