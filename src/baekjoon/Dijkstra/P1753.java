@@ -50,6 +50,7 @@ public class P1753 {
             int current = curEdge.to;
             if(visited[current]) continue;
             visited[current] = true;
+            // if(dist[current] < cost) continue;
             for(Edge edge : edgeList[current]){
                 if(distance[edge.to] > distance[current] + edge.length){
                     distance[edge.to] = distance[current] + edge.length;
