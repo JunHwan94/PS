@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.StringTokenizer;
 
 public class P1249 {
     static class Edge implements Comparable<Edge>{
@@ -28,7 +27,7 @@ public class P1249 {
     }
 
     static int N;
-    static int[][] map, adjMatrix;
+    static int[][] map;
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = stoi(br.readLine());
@@ -39,7 +38,6 @@ public class P1249 {
             N = stoi(br.readLine());
             map = new int[N][N];
 
-            StringTokenizer st;
             for (int i = 0; i < N; i++) {
                 String in = br.readLine();
                 for (int j = 0; j < N; j++) {

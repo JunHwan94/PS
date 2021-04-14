@@ -1,4 +1,4 @@
-package baekjoon.KMP;
+package baekjoon.문자열.KMP;
 
 import java.io.BufferedReader;
 import java.io.IOException;
