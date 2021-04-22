@@ -56,12 +56,9 @@ public class P17471_개리맨더링 {
 					nSet.add(i);
 				}
 			}
-//			System.out.print(" ");
 			for (int i : nSet) {
 				System.out.print(i);
 			}
-//			System.out.println();
-//			System.out.println("인구 차 : " + Math.abs(sPopCnt - nPopCnt));
 			
 			tSet = new HashSet<>();
 			int selOne = 0;
@@ -87,15 +84,10 @@ public class P17471_개리맨더링 {
 			boolean nConnected = false;
 			nSet.removeAll(tSet);
 			if(nSet.size() == 0) nConnected = true;
-			else return;
 			
 			// 같은 선거구끼리 다 연결돼있으면 인구 차이 최소값 갱신
-			if(sConnected && nConnected) {
+			if(sConnected && nConnected)
 				min = Math.min(min, Math.abs(sPopCnt - nPopCnt));
-//				System.out.println("갱신");
-			}
-			
-//			System.out.println();
 			return;
 		}
 
