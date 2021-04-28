@@ -1,4 +1,4 @@
-package baekjoon;
+package baekjoon.BFS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class P16234 {
         while(true) {
             int num = 1, cnt = 0;
             visited = new int[N][N];
-            // 연합 구축
+            // 연합 구축( 국경 개방이라는 것에 굳이 신경쓸필요없음 )
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < N; j++) {
                     if (visited[i][j] == 0) {
