@@ -13,17 +13,17 @@ fun main() {
             val node = input[0].toCharArray()[0].also { nodeSet.add(it) }
             val left = input[1].toCharArray()[0].also { nodeSet.add(it) }
             val right = input[2].toCharArray()[0].also { nodeSet.add(it) }
-            this[node.toInt() - 64][0] = left
-            this[node.toInt() - 64][1] = right
+            this[node.code - 64][0] = left
+            this[node.code - 64][1] = right
         }
     }.also { it.forEach { cArr -> cArr.forEach { c -> nodeSet.remove(c) } } }
 
     val root = nodeSet.toArray()[0] as Char
-    preOrder(root.toInt() - 64)
+    preOrder(root.code - 64)
     println()
-    inOrder(root.toInt() - 64)
+    inOrder(root.code - 64)
     println()
-    postOrder(root.toInt() - 64)
+    postOrder(root.code - 64)
 }
 
 fun preOrder(i: Int){
@@ -31,8 +31,8 @@ fun preOrder(i: Int){
     val c = (i + 64).toChar()
     if(c != '.') {
         print(c)
-        preOrder(tree[i][0].toInt() - 64)
-        preOrder(tree[i][1].toInt() - 64)
+        preOrder(tree[i][0].code - 64)
+        preOrder(tree[i][1].code - 64)
     }
 }
 
@@ -40,9 +40,9 @@ fun inOrder(i: Int){
     if(i >= tree.size) return
     val c = (i + 64).toChar()
     if(c != '.') {
-        inOrder(tree[i][0].toInt() - 64)
+        inOrder(tree[i][0].code - 64)
         print(c)
-        inOrder(tree[i][1].toInt() - 64)
+        inOrder(tree[i][1].code - 64)
     }
 }
 
@@ -50,8 +50,8 @@ fun postOrder(i: Int){
     if(i >= tree.size) return
     val c = (i + 64).toChar()
     if(c != '.') {
-        postOrder(tree[i][0].toInt() - 64)
-        postOrder(tree[i][1].toInt() - 64)
+        postOrder(tree[i][0].code - 64)
+        postOrder(tree[i][1].code - 64)
         print(c)
     }
 }

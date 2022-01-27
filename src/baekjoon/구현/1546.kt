@@ -19,7 +19,7 @@ fun main(){
 
     readLine()
     readLine()!!.split(" ").map{it.toInt()}.run{
-        print(average()*100/max()!!)
+        print(average()*100/ maxOrNull()!!)
     }
 
 //    with(BufferedReader(InputStreamReader(System.`in`))) {

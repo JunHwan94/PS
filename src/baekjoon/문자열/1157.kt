@@ -3,7 +3,7 @@ package baekjoon.문자열
 fun main(){
     val arr = Array(26){ 0 }
     System.`in`.bufferedReader().readLine().onEach { c ->
-        arr[c.toUpperCase() - 'A']++
+        arr[c.uppercaseChar() - 'A']++
     }
     var idx = 0
     var max = 0
@@ -21,5 +21,5 @@ fun main(){
     }
     if(maxCnt > 1){
         println("?")
-    }else println((idx + 'A'.toInt()).toChar())
+    }else println((idx + 'A'.code).toChar())
 }

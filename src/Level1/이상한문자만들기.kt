@@ -9,8 +9,8 @@ private fun solution(s: String): String{
     var answer = ""
     var wi = 0
     s.forEach{
-        answer += if(wi % 2 == 0) it.toUpperCase()
-        else it.toLowerCase()
+        answer += if (wi % 2 == 0) it.uppercaseChar()
+        else it.lowercaseChar()
         wi++
         if(it == ' ') wi = 0
     }
@@ -21,8 +21,8 @@ private fun solution1(s: String): String{
     var answer = ""
     s.split(" ").forEach{
         for(i in 0 until it.length){
-            answer += if(i % 2 == 0) it[i].toUpperCase()
-            else it[i].toLowerCase()
+            answer += if (i % 2 == 0) it[i].uppercaseChar()
+            else it[i].lowercaseChar()
         }
         answer += " "
     }
