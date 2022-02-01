@@ -1,4 +1,4 @@
-package baekjoon;
+package baekjoon.완전탐색.DFS;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -64,8 +64,7 @@ public class P1167 {
         visited[cur] = true;
         // 인접 정점 탐색
         for (Edge edge : adjLists[cur]) {
-            int next = edge.to;
-            dfs(next, dist + edge.dist);
+            dfs(edge.to, dist + edge.dist);
         }
     }
 
