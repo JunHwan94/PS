@@ -18,9 +18,7 @@ public class P1516 {
         @Override
         public int compareTo(Building o) {
             return inCount == o.inCount ?
-//                    nextList.size() == o.nextList.size() ?
                     time - o.time
-//                            : nextList.size() - o.nextList.size()
                     : inCount - o.inCount;
         }
     }
@@ -56,29 +54,20 @@ public class P1516 {
         }
 
         int[] times = new int[N + 1];
-        int time = 0;
+        // 필요한 이전 건물 중 늦게끝나는 시간이 건설 시작시간
         while(!pq.isEmpty()){
-            Building b = pq.peek();
-            if(b.time == 0) {
-                times[b.no] = time;
-                pq.poll();
-                for (int i : b.nextList) {
-                    buildings[i].inCount--;
-                    // 이전 건물 다지음
-                    if (buildings[i].inCount == 0) {
-                        pq.offer(buildings[i]);
-                    }
+            Building b = pq.poll();
+            // 시작 시간 + 소요 시간
+            times[b.no] += b.time;
+            for (int i : b.nextList) {
+                buildings[i].inCount--;
+                // 다음 건물 시작시간 설정
+                times[i] = Math.max(times[i], times[b.no]);
+                // 다음 건물에 필요한 건물 다지음
+                if (buildings[i].inCount == 0) {
+                    pq.offer(buildings[i]);
                 }
-            }else{
-                time += b.time;
-                // 짓는 중인 건물 시간 감소
-                for (Building pb : pq) {
-                    pb.time -= b.time;
-                }
-                continue;
             }
-
-            time++;
         }
 
         for (int i = 1; i < N + 1; i++) {
