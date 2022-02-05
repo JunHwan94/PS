@@ -6,47 +6,67 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class P1717 {
+
     static int N, M;
-    static int parents[];
+    static int[] id, size;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        StringTokenizer token = new StringTokenizer(br.readLine());
-        N = stoi(token.nextToken());
-        M = stoi(token.nextToken());
-        parents = new int[N + 1];
-        make();
-        for(int m = 0; m < M; m++) {
-            token = new StringTokenizer(br.readLine());
-            int cmd = stoi(token.nextToken());
-            int a = stoi(token.nextToken());
-            int b = stoi(token.nextToken());
-            if(cmd == 0) union(a, b); // 0 : union, 1 : find
-            else sb.append(findSet(a) == findSet(b) ? "YES" : "NO").append('\n');
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        N = stoi(st.nextToken());
+        M = stoi(st.nextToken());
+        id = new int[N + 1];
+        size = new int[N + 1];
+
+        for (int i = 0; i < N + 1; i++) {
+            id[i] = i;
+            size[i] = 1;
         }
-        sb.append('\n');
-        System.out.println(sb);
-    }
 
-    static void make() {
-        for (int i = 1; i <= N; i++) {
-            parents[i] = i;
+        for (int i = 0; i < M; i++) {
+            st = new StringTokenizer(br.readLine());
+            int cmd =  stoi(st.nextToken());
+            int p = stoi(st.nextToken());
+            int q = stoi(st.nextToken());
+            if(cmd == 0){
+                union(p, q);
+            }else{
+                if(check(p, q)){
+                    System.out.println("YES");
+                }else{
+                    System.out.println("NO");
+                }
+            }
         }
     }
 
-    static int findSet(int a) {
-        if(parents[a] == a) return a;
-        return parents[a] = findSet(parents[a]);
+    static void union(int p, int q){
+        int i = root(p);
+        int j = root(q);
+        if(i == j) return;
+        id[i] = j;
+        if(size[i] < size[j]){
+            size[j] += size[i];
+            id[i] = root(j);
+        }else{
+            size[i] += size[j];
+            id[j] = root(i);
+        }
     }
 
-    static boolean union(int a, int b) {
-        int aRoot = findSet(a);
-        int bRoot = findSet(b);
-        if(aRoot == bRoot) return false;
-        parents[bRoot] = aRoot;
-        return true;
+    static int root(int p){
+        while(p != id[p]){
+            id[p] = id[id[p]];
+            p = id[p];
+        }
+        return p;
     }
 
-    static int stoi(String s) { return Integer.parseInt(s); }
+    static boolean check(int p, int q){
+        return root(p) == root(q);
+    }
+
+    static int stoi(String s){
+        return Integer.parseInt(s);
+    }
 }
