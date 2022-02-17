@@ -5,46 +5,58 @@ import java.util.*;
 
 public class P1068 {
 
+    static class Node{
+        int pno;
+        Set<Integer> childSet = new HashSet<>();
+    }
+
+    static Node[] tree;
+    static int root;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = stoi(br.readLine());
-        int[] tree = new int[N];
+        tree = new Node[N];
 
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            tree[i] = stoi(st.nextToken());
-        }
-
-        int dNode = stoi(br.readLine());
-        Set<Integer> set = new HashSet<>();
-        set.add(dNode);
-        boolean[] isNotLeafArr = new boolean[N];
-        isNotLeafArr[dNode] = true;
-        for (int i = 0; i < N; i++) {
-            if(set.contains(tree[i])){
-                set.add(i);
-                isNotLeafArr[i] = true;
-            }
-        }
-
-        for (int i : set) {
-            tree[i] = -2;
+            tree[i] = new Node();
         }
 
         for (int i = 0; i < N; i++) {
-            if(tree[i] >= 0) {//!= -2) {
-                isNotLeafArr[tree[i]] = true;
+            int pno = stoi(st.nextToken());
+            if(pno == -1){
+                root = i;
+                continue;
             }
+            tree[i].pno = pno;
+            tree[pno].childSet.add(i);
         }
+
+        int dno = stoi(br.readLine());
+        if(root == dno) {
+            System.out.println(0);
+            return;
+        }
+
+        tree[tree[dno].pno].childSet.remove(dno);
+        delete(dno);
 
         int cnt = 0;
-        for (boolean isNotLeaf : isNotLeafArr) {
-            if(!isNotLeaf){
-                cnt++;
+        for (int i = 0; i < N; i++) {
+            if(tree[i] != null){
+                if(tree[i].childSet.size() == 0){
+                    cnt++;
+                }
             }
         }
-
         System.out.println(cnt);
+    }
+
+    static void delete(int n){
+        for (int i : tree[n].childSet) {
+            delete(i);
+        }
+        tree[n] = null;
     }
 
     static int stoi(String s){
