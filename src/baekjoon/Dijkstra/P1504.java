@@ -97,21 +97,14 @@ public class P1504 {
             }
         }
 
-        for (int i : d) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        for (int i : d1) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-        for (int i : d2) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-
         long min1 = d[v1] + d1[v2] + d2[N];
+        if(d[v1] == Integer.MAX_VALUE || d1[v2] == Integer.MAX_VALUE || d2[N] == Integer.MAX_VALUE){
+            min1 = Integer.MAX_VALUE;
+        }
         long min2 = d[v2] + d2[v1] + d1[N];
+        if(d[v2] == Integer.MAX_VALUE || d2[v1] == Integer.MAX_VALUE || d1[N] == Integer.MAX_VALUE){
+            min2 = Integer.MAX_VALUE;
+        }
         long min = Math.min(min1, min2);
         if(min >= Integer.MAX_VALUE){
             min = -1;
