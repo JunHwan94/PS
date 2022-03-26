@@ -1,5 +1,8 @@
 package test;
 
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 public class skbe {
     public static void main(String[] args) {
         System.out.println(solution(4578, new int[]{1, 4, 99, 35, 50, 1000}));
@@ -10,7 +13,7 @@ public class skbe {
     static int solution(int money, int[] costs){
         Queue<Coin> pq = new PriorityQueue<>();
         for (int i = 0; i < 6; i++) {
-            coins[i] = new Coin(values[i], costs[i]);
+            pq.offer(new Coin(values[i], costs[i]));
         }
 
         int cost = 0;
