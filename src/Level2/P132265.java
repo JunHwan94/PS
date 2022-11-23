@@ -12,11 +12,9 @@ class P132265 {
 
         for(int k : topping){
             map1.put(k, map1.computeIfAbsent(k, it -> 0) + 1);
-            if(map2.get(k) != null){
-                map2.put(k, map2.get(k) - 1);
-                if(map2.get(k) <= 0){
-                    map2.remove(k);
-                }
+            map2.put(k, map2.computeIfAbsent(k, it -> 0) - 1);
+            if(map2.get(k) <= 0) {
+                map2.remove(k);
             }
 
             if(map1.size() == map2.size()){
